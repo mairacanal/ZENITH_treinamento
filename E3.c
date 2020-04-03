@@ -44,7 +44,7 @@ void ler_arquivo (int vetor[][COLUNAS]){
 }
 void gerar_arquivo (float soma[], float med[], float desv[]){
     int i;
-    FILE* arquivo = fopen("resultados.csv", "w");
+    FILE* arquivo = fopen("resultados1.csv", "w");
     for (i = 0; i < LINHAS; i++){
         fprintf (arquivo, "%.0f, %.3f, %.3f\n", soma[i], med[i], desv[i]);
     }
