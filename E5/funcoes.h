@@ -1,6 +1,10 @@
 #ifndef FUNCOES_H
 #include FUNCOES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -32,4 +36,7 @@ void ler_arquivo (FILE* arquivo, int N, int vetor[N][COLUNAS]);
 void gerar_arquivo (FILE* arquivo, int N, float soma[], float med[], float desv[]);
 //Gera um arquivo de N linhas e 3 colunas, sendo os vetores (soma, med, desv) posionados lado a lado em cada linha
 
+#ifdef __cplusplus
+}
+#endif
 #endif
