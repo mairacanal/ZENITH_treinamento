@@ -1,10 +1,5 @@
 #include "funcoes.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#define COLUNAS 3
-
 
 //OPERAÇÕES BÁSICAS
 int soma (int N, int vector[]){
