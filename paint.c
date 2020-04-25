@@ -108,7 +108,7 @@ void export (int** imagem, int* dimensoes){
             for (int i = 0; i < dimensoes[1]; i++){
                 if (j == (dimensoes[0] - 1)) fprintf(arquivo, "%d\n", imagem [i][j]);
                 else {
-                    fprintf(arquivo, "%d", imagem[i][j]);
+                    fprintf(arquivo, "%d ", imagem[i][j]);
                 }
             }
         }
