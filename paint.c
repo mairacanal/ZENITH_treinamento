@@ -10,8 +10,8 @@ ZENITH - EESC/USP - 2020
 #include <stdlib.h>                   //Biblioteca para alocação dinâmica
 #include <string.h>                   //Biblioteca para lidar com as strings
 
-#define NUM_P_5 5
-#define NUM_P_4 4
+#define NUM_P_5 5                     //Número de parâmetros da função LINE e RECT
+#define NUM_P_4 4                     //Número de parâmetros da função CIRCLE e DISK
 
 /*
 O usuário tem acesso a 6 funções para manipular a sua imagem:
@@ -92,7 +92,6 @@ int** create (int* dimensoes){
     }
 }
 
-// Tem um erro: tem que achar o maior de cada linha e fazer o espaçamento
 // EXPORT <name>
 void export (int** imagem, int* dimensoes){
     char name[15];
@@ -195,9 +194,6 @@ void circle (int** imagem,  int* dimensoes){
     for (int i = 0; i < NUM_P_4; i++) scanf("%d", &parametro[i]);
     // Verifica se algum dos parêmetros inseridos pelo usuário 
     if (parametro[0] < 0 || parametro[1] < 0 || parametro[2] < 0 || parametro[3] < 0 || parametro[4] < 0) printf ("ERRO! Parametros invalidos.\n");
-    else if ((parametro[0] - parametro[2]) < 0 || (parametro[1] - parametro[2]) < 0 || (parametro[0] + parametro[2]) > dimensoes[0] || (parametro[1] + parametro[2]) > dimensoes[1]){
-        printf("ERRO! Impossivel imprimir essa imagem!\n");
-    }
 
     // Utiliza-se o segmentação do círculo em 8 partes para a construção da circuferência
     else {
@@ -207,14 +203,16 @@ void circle (int** imagem,  int* dimensoes){
         int d = (1 - r);
         int x = 0;
         int y = r;
+
         imagem[cy + y][cx + x] = parametro[3];
-        imagem[cy - y][cx - x] = parametro[3];
         imagem[cy - y][cx + x] = parametro[3];
         imagem[cy + y][cx - x] = parametro[3];
+        imagem[cy - y][cx - x] = parametro[3];
         imagem[cy + x][cx + y] = parametro[3];
         imagem[cy - x][cx - y] = parametro[3];
         imagem[cy - x][cx + y] = parametro[3];
         imagem[cy + x][cx - y] = parametro[3];
+
         for (x = 0; x < y; x++){
             if (d < 0){
                 d = d + (2*x) + 3;
@@ -247,9 +245,8 @@ void disk (int** imagem, int* dimensoes){
 
     for (int i = 0; i < NUM_P_4; i++) scanf("%d", &parametro[i]);
     // Verifica se algum dos parêmetros inseridos pelo usuário 
-    if (parametro[0] < 0 || parametro[1] < 0 || parametro[2] < 0 || parametro[3] < 0 || parametro[4] < 0) printf ("ERRO! Parametros invalidos.\n");
-    else if ((parametro[0] - parametro[2]) < 0 || (parametro[1] - parametro[2]) < 0 || (parametro[0] + parametro[2]) > dimensoes[0] || (parametro[1] + parametro[2]) > dimensoes[1]){
-        printf("ERRO! Impossivel imprimir essa imagem!\n");
+    if (parametro[0] < 0 || parametro[1] < 0 || parametro[2] < 0 || parametro[3] < 0 || parametro[4] < 0 || parametro[0] > dimensoes[0] || parametro[1] > dimensoes[1]) {
+        printf ("ERRO! Parametros invalidos.\n");
     }
 
     // Mesmo princípio da função circle, mas dessa vez o interior da circunferência é preenchido por meio de laços for
